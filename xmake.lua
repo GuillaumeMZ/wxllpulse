@@ -6,5 +6,10 @@ target("wxllpulse")
     set_languages("cxx17")
 
     add_files("src/**.cpp")
-    add_links("X11")
-    add_packages("libsdl")
+    add_links(
+        "avformat",
+        "avcodec",
+        "swscale", -- YUV -> RGB conversion
+        "X11"
+    )
+    add_packages("libsdl") -- is it really needed ?
