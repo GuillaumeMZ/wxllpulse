@@ -29,7 +29,8 @@ namespace avmm
 			return;
 		}
 
-        avformat_free_context(_context);
+		//using avformat_free_context causes memory leaks; using avformat_close_input instead does not.
+		avformat_close_input(&_context);
         _context = nullptr;
         _streams = std::nullopt;
     }
