@@ -9,6 +9,7 @@ extern "C" {
     #include <libavcodec/avcodec.h>
 }
 
+#include "Packet.hpp"
 #include "Stream.hpp"
 
 namespace avmm
@@ -16,10 +17,18 @@ namespace avmm
     class FormatContext
     {
         public:
+			FormatContext(const FormatContext&) = delete;
+			FormatContext(FormatContext&&) noexcept;
             ~FormatContext();
+
+			FormatContext& operator=(const FormatContext&) = delete;
+			FormatContext& operator=(FormatContext&&) noexcept;
+
             static FormatContext from_file(const std::string& path);
 
-            std::vector<Stream>& get_streams();
+            const std::vector<Stream>& get_streams();
+
+			void read_frame(Packet& frame);
 
         private:
             FormatContext();

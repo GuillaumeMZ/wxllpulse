@@ -9,6 +9,7 @@ target("wxllpulse")
     add_links(
         "avformat",
         "avcodec",
+        "avutil",
         "swscale", -- YUV -> RGB conversion
         "X11"
     )

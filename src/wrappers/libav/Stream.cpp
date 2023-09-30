@@ -18,5 +18,8 @@ namespace avmm
 		}
 	}
 
-
+	CodecParameters Stream::get_codec_parameters() const
+	{
+		return CodecParameters{_stream->codecpar};
+	}
 }
