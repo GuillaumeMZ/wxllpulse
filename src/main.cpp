@@ -14,13 +14,13 @@ int main()
 	for (const auto &stream: format.get_streams())
 	{
 		CodecParameters codecParameters = stream.get_codec_parameters();
-		const Codec codec = Codec::from_codec_id(codecParameters.get_codec_id());
 
 		if (codecParameters.get_codec_type() != AVMEDIA_TYPE_VIDEO) //MediaType::Video
 		{
 			continue;
 		}
 
+		const Codec codec = Codec::from_codec_id(codecParameters.get_codec_id());
 		CodecContext codecContext = CodecContext::from_codec(codec, codecParameters);
 
 		Packet packet;
