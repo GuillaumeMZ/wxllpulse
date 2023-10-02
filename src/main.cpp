@@ -8,7 +8,7 @@
 
 int main()
 {
-	using namespace avmm;
+	/*using namespace avmm;
 
 	FormatContext format = FormatContext::from_file("/home/guillaume/salter.mp4");
 	for (const auto &stream: format.get_streams())
@@ -31,5 +31,7 @@ int main()
 		codecContext.receive_frame(frame);
 
 		std::cout << "frame width: " << frame.get_width() << "\n";
-	}
+	}*/
+
+
 }
