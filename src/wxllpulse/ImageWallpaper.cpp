@@ -20,7 +20,7 @@ namespace wxp
 
 	}
 
-	void ImageWallpaper::update(X11RootWindow& root_window)
+	void ImageWallpaper::update(RootWindow& root_window)
 	{
 		if(_has_been_set_yet)
 		{
