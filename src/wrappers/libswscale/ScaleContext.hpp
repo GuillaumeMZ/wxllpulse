@@ -1,9 +1,10 @@
 #pragma once
 
 extern "C" {
-	#include <libavutil/avutil.h>
 	#include <libswscale/swscale.h>
 }
+
+#include <libavutil/avutil.h>
 
 namespace swsmm
 {
