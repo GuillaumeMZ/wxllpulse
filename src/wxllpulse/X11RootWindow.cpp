@@ -19,4 +19,9 @@ namespace wxp
 	{
 		XCloseDisplay(_display);
 	}
+
+	void X11RootWindow::setBackground()
+	{
+
+	}
 }

@@ -1,12 +1,12 @@
 #pragma once
 
-#include "X11RootWindow.hpp"
+#include "RootWindow.hpp"
 
 namespace wxp
 {
 	class Wallpaper
 	{
 		public:
-			virtual void update(X11RootWindow& root_window) = 0;
+			virtual void update(RootWindow& root_window) = 0;
 	};
 }

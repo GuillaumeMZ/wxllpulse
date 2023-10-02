@@ -23,7 +23,7 @@ namespace wxp
 			VideoWallpaper& operator=(VideoWallpaper&&) = delete;
 			~VideoWallpaper();
 
-			void update(X11RootWindow& root_window) override;
+			void update(RootWindow& root_window) override;
 
 		private:
 
