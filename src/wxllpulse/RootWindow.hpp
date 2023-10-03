@@ -7,12 +7,7 @@ namespace wxp
 		unsigned int width;
 		unsigned int height;
 
-		//TODO: find something better
-		union
-		{
-			const unsigned char* cuc_pixels;
-			char* pixels;
-		} data;
+		unsigned char* pixels;
 	};
 
 	class RootWindow

@@ -10,6 +10,7 @@ namespace wxp
 	{
 		public:
 			explicit ImageWallpaper(const std::string& image_path);
+			~ImageWallpaper();
 
 			void update(RootWindow& root_window) override;
 
