@@ -15,6 +15,9 @@ namespace wxp
 
 		private:
 			bool _has_been_set_yet;
+
+			int _width;
+			int _height;
 			unsigned char* _image;
 	};
 }

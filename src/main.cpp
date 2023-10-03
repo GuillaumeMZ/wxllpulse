@@ -1,13 +1,21 @@
 #include <iostream>
 
-#include "wrappers/libav/FormatContext.hpp"
-#include "wrappers/libav/Codec.hpp"
-#include "wrappers/libav/Packet.hpp"
-#include "wrappers/libav/Frame.hpp"
-#include "wrappers/libav/CodecContext.hpp"
+#include "wxllpulse/ImageWallpaper.hpp"
+#include "wxllpulse/X11RootWindow.hpp"
+
+#include <unistd.h>
 
 int main()
 {
+	wxp::X11RootWindow root {0};
+	wxp::ImageWallpaper wallpaper {"/home/guillaume/output.png"};
+	wallpaper.update(root);
+
+	while(1)
+	{
+		sleep(1);
+	}
+
 	/*using namespace avmm;
 
 	FormatContext format = FormatContext::from_file("/home/guillaume/salter.mp4");
@@ -32,6 +40,4 @@ int main()
 
 		std::cout << "frame width: " << frame.get_width() << "\n";
 	}*/
-
-
 }

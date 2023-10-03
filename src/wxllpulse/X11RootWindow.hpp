@@ -15,10 +15,15 @@ namespace wxp
 			explicit X11RootWindow(int screen_number);
 			~X11RootWindow();
 
-			void setBackground(/* const Image& image */) override;
+			void setBackground(const Image& image) override;
 
 		private:
-			Display* _display;
+			void updateWindowProperties();
+
+		private:
+			Display *_display;
 			Window _window;
+			Screen *_screen;
+			Pixmap _pixmap;
 	};
 }

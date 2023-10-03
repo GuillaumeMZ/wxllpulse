@@ -9,15 +9,15 @@ namespace wxp
 {
 	ImageWallpaper::ImageWallpaper(const std::string& image_path):
 		_has_been_set_yet { false },
-		_image { stbi_load(image_path.c_str(), nullptr, nullptr, nullptr, 3) } //loading only 3 channels (skipping alpha)
+		_width { -1 },
+		_height { -1 },
+		_image { stbi_load(image_path.c_str(), &_width, &_height, nullptr, 3) } //loading only 3 channels (skipping alpha)
 	{
 		if(_image == nullptr)
 		{
 			//TODO: better error message
 			throw std::runtime_error("Image loading failed.");
 		}
-
-
 	}
 
 	void ImageWallpaper::update(RootWindow& root_window)
@@ -28,5 +28,13 @@ namespace wxp
 		}
 
 		//see https://solarianprogrammer.com/2019/06/10/c-programming-reading-writing-images-stb_image-libraries/
+		Image image{};
+		image.width = _width;
+		image.height = _height;
+		image.data.cuc_pixels = _image;
+
+		root_window.setBackground(image);
+
+		_has_been_set_yet = true;
 	}
 }
