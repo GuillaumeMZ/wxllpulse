@@ -1,6 +1,6 @@
 #pragma once
 
-#include <X11/Xlib.h> //aka twitter
+#include <X11/Xlib.h>
 
 #include "RootWindow.hpp"
 

@@ -6,7 +6,6 @@ namespace wxp
 	{
 		unsigned int width;
 		unsigned int height;
-
 		unsigned char* pixels;
 	};
 

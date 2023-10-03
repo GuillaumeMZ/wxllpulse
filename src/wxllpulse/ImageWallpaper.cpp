@@ -22,7 +22,7 @@ namespace wxp
 
 	ImageWallpaper::~ImageWallpaper()
 	{
-		stbi_image_free(_image);
+		stbi_image_free(_image); //crashes
 	}
 
 	void ImageWallpaper::update(RootWindow& root_window)
@@ -32,7 +32,6 @@ namespace wxp
 			return;
 		}
 
-		//see https://solarianprogrammer.com/2019/06/10/c-programming-reading-writing-images-stb_image-libraries/
 		Image image{};
 		image.width = _width;
 		image.height = _height;

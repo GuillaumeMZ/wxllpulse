@@ -6,8 +6,6 @@
 
 #include "X11RootWindow.hpp"
 
-#include <iostream>
-
 namespace wxp
 {
 
@@ -21,7 +19,7 @@ namespace wxp
 
 		//TODO: find a way to check if errors occurred
 		_screen = XScreenOfDisplay(_display, screen_number);
-		_window =  XRootWindow(_display, screen_number); //we can use screen->root instead
+		_window = XRootWindow(_display, screen_number); //we can use screen->root instead
 		_pixmap = XCreatePixmap(_display, _window, _screen->width, _screen->height, 24);
 	}
 
@@ -33,7 +31,10 @@ namespace wxp
 
 	void X11RootWindow::setBackground(const Image& image)
 	{
+		//Interesting: https://stackoverflow.com/questions/17017432/linux-c-ximage-rgb-bgr
+
 		//https://itecnote.com/tecnote/how-to-upload-32-bit-image-to-server-side-pixmap/
+		//maybe create the XImage in the ctor so that it can be reused...
 		XImage *x11_image = XCreateImage(_display, _screen->root_visual, 24, ZPixmap, 0, (char*)image.pixels, image.width, image.height, 32, 0);
 		if(x11_image == nullptr)
 		{
@@ -48,6 +49,7 @@ namespace wxp
 		XClearWindow(_display, _window);
 		XFlush(_display);
 
+		//... and destroy it in the dtor
 		XDestroyImage(x11_image);
 	}
 

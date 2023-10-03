@@ -15,7 +15,4 @@ int main()
 	wxp::X11RootWindow root{0};
 	wxp::ImageWallpaper wallpaper{"/home/guillaume/output.png"};
 	wallpaper.update(root);
-
-	while(1)
-		sleep(1);
 }
