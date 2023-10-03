@@ -32,6 +32,7 @@ namespace wxp
 	void X11RootWindow::setBackground(const Image& image)
 	{
 		//Interesting: https://stackoverflow.com/questions/17017432/linux-c-ximage-rgb-bgr
+		//CONFIRMED: Xlib uses BGR instead of RGB
 
 		//https://itecnote.com/tecnote/how-to-upload-32-bit-image-to-server-side-pixmap/
 		//maybe create the XImage in the ctor so that it can be reused...
