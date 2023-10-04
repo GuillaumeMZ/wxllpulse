@@ -51,6 +51,7 @@ namespace wxp
 		XFlush(_display);
 
 		//... and destroy it in the dtor
+        //XDestroyImage frees the XImage structure AND the raw data !!!
 		XDestroyImage(x11_image);
 	}
 
