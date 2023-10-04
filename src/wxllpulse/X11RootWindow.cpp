@@ -33,6 +33,7 @@ namespace wxp
 	{
 		//Interesting: https://stackoverflow.com/questions/17017432/linux-c-ximage-rgb-bgr
 		//CONFIRMED: Xlib uses BGR instead of RGB
+        http://ermig1979.github.io/Simd/help/group__bgr__conversion.html: fast bgr to rgb conversion using simd instructions
 
 		//https://itecnote.com/tecnote/how-to-upload-32-bit-image-to-server-side-pixmap/
 		//maybe create the XImage in the ctor so that it can be reused...
