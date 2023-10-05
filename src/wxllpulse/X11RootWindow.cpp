@@ -1,59 +1,55 @@
-#include <stdexcept>
-
+#include <cairo/cairo.h>
+#include <cairo/cairo-xlib.h>
 #include <X11/Xatom.h>
 #include <X11/Xlib.h>
-#include <X11/Xutil.h> //XDestroyImage
+#include <iostream>
+#include <stdexcept>
 
 #include "X11RootWindow.hpp"
 
 namespace wxp
 {
-
 	X11RootWindow::X11RootWindow(int screen_number)
 	{
 		_display = XOpenDisplay(":0");
-		if(_display == nullptr)
+		if (_display == nullptr)
 		{
 			throw std::runtime_error("Unable to open the X11 display.");
 		}
+		XSetCloseDownMode(_display, RetainPermanent); //Do not automatically destroy the pixmap when the application is closed.
 
 		//TODO: find a way to check if errors occurred
 		_screen = XScreenOfDisplay(_display, screen_number);
 		_window = XRootWindow(_display, screen_number); //we can use screen->root instead
-		_pixmap = XCreatePixmap(_display, _window, _screen->width, _screen->height, 24);
+		_pixmap = XCreatePixmap(_display, _window, _screen->width, _screen->height, _screen->root_depth);
 	}
 
 	X11RootWindow::~X11RootWindow()
 	{
-		XFreePixmap(_display, _pixmap);
+		//DO NOT CALL XFREEPIXMAP ! If the pixmap is destroyed, other applications won't be able to fetch it
 		XCloseDisplay(_display);
 	}
 
 	void X11RootWindow::setBackground(const Image& image)
 	{
-		//Interesting: https://stackoverflow.com/questions/17017432/linux-c-ximage-rgb-bgr
-		//CONFIRMED: Xlib uses BGR instead of RGB
-        http://ermig1979.github.io/Simd/help/group__bgr__conversion.html: fast bgr to rgb conversion using simd instructions
+		//TODO: check if it succeeded
+		cairo_surface_t *pixmap_surface = cairo_xlib_surface_create(_display, _pixmap, _screen->root_visual, image.width, image.height);
+		cairo_surface_t *image_surface = cairo_image_surface_create_for_data(image.pixels, CAIRO_FORMAT_RGB24, image.width, image.height, image.width * 4);
+		cairo_t *pixmap_context = cairo_create(pixmap_surface);
 
-		//https://itecnote.com/tecnote/how-to-upload-32-bit-image-to-server-side-pixmap/
-		//maybe create the XImage in the ctor so that it can be reused...
-		XImage *x11_image = XCreateImage(_display, _screen->root_visual, 24, ZPixmap, 0, (char*)image.pixels, image.width, image.height, 32, 0);
-		if(x11_image == nullptr)
-		{
-			throw std::runtime_error("X11RootWindow::setBackground(): unable to create the image.");
-		}
-
-		XPutImage(_display, _pixmap, _screen->default_gc, x11_image, 0, 0, 0, 0, image.width, image.height);
+		cairo_set_source_surface(pixmap_context, image_surface, 0., 0.);
+		cairo_paint(pixmap_context);
+		cairo_surface_flush(pixmap_surface);
 
 		updateWindowProperties();
-		XSetWindowBackgroundPixmap(_display, _window, _pixmap);
 
+		XSetWindowBackgroundPixmap(_display, _window, _pixmap);
 		XClearWindow(_display, _window);
 		XFlush(_display);
 
-		//... and destroy it in the dtor
-        //XDestroyImage frees the XImage structure AND the raw data !!!
-		XDestroyImage(x11_image);
+		cairo_destroy(pixmap_context);
+		cairo_surface_destroy(image_surface);
+		//cairo_surface_destroy(pixmap_surface);
 	}
 
 	void X11RootWindow::updateWindowProperties()
