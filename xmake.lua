@@ -1,4 +1,4 @@
-add_requires("cxxopts", "stb", "toml++")
+add_requires("cairo", "cxxopts", "stb", "toml++")
 
 target("wxllpulse")
     set_default(true)
@@ -14,4 +14,4 @@ target("wxllpulse")
         "swscale",
         "X11"
     )
-    add_packages("cxxopts", "stb", "toml++")
+    add_packages("cairo", "cxxopts", "stb", "toml++")
