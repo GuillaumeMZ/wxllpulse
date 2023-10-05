@@ -49,7 +49,7 @@ namespace wxp
 
 		cairo_destroy(pixmap_context);
 		cairo_surface_destroy(image_surface);
-		//cairo_surface_destroy(pixmap_surface);
+		cairo_surface_destroy(pixmap_surface);
 	}
 
 	void X11RootWindow::updateWindowProperties()
