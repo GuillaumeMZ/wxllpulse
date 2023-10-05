@@ -41,5 +41,4 @@ namespace wxp
 
 		_has_been_set_yet = true;
 	}
-
 }

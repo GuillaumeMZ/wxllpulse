@@ -12,7 +12,7 @@ namespace wxp
 			explicit ImageWallpaper(const std::string& image_path);
 			~ImageWallpaper();
 
-			void update(RootWindow& root_window) override;
+			void update(RootWindow& root_window /* ScalingMode scaling_mode */) override;
 
 		private:
 			bool _has_been_set_yet;
