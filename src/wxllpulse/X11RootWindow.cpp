@@ -8,7 +8,7 @@ namespace wxp
 {
 	X11RootWindow::X11RootWindow(int screen_number)
 	{
-		_display = XOpenDisplay(":0");
+		_display = XOpenDisplay(nullptr);
 		if (_display == nullptr)
 		{
 			throw std::runtime_error("Unable to open the X11 display.");

@@ -21,6 +21,7 @@ namespace wxp
 
 	Image Image::from_memory(void* data, int width, int height)
 	{
+		//needs improvement (and a better lib)
 		Image result {};
 		result._image = static_cast<unsigned char *>(data);
 		result._width = width;
