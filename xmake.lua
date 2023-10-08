@@ -7,11 +7,5 @@ target("wxllpulse")
 
     add_includedirs("src")
     add_files("src/**.cpp")
-    add_links(
-        "avformat",
-        "avcodec",
-        "avutil",
-        "swscale",
-        "X11"
-    )
+    add_links("avformat", "avcodec", "avutil", "swscale", "X11")
     add_packages("cxxopts", "stb", "toml++")

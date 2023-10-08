@@ -3,22 +3,19 @@
 #include <string>
 
 #include "Wallpaper.hpp"
+#include "Image.hpp"
 
 namespace wxp
 {
 	class ImageWallpaper: public Wallpaper
 	{
 		public:
-			explicit ImageWallpaper(const std::string& image_path);
-			~ImageWallpaper();
+			// should we replace this by something like "ImageWallpaperSettings" ?
+			explicit ImageWallpaper(const Image& image);
 
-			void update(RootWindow& root_window /* ScalingMode scaling_mode */) override;
+			void setAsCurrent(X11RootWindow& root_window /* ScalingMode scaling_mode */) override;
 
 		private:
-			bool _has_been_set_yet;
-
-			int _width;
-			int _height;
-			unsigned char* _image;
+			const Image& _image;
 	};
 }

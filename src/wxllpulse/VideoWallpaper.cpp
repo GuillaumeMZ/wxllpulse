@@ -12,7 +12,7 @@ namespace wxp
 
 	}
 
-	void VideoWallpaper::update(RootWindow &root_window/* ScalingMode scaling_mode */)
+	void VideoWallpaper::setAsCurrent(X11RootWindow &root_window/* ScalingMode scaling_mode */)
 	{
 		//stb_image has a function to convert YCbCr to RGB !
 		//would be easier to use than swscale imo
