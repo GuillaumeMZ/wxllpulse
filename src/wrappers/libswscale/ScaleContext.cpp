@@ -17,7 +17,7 @@ namespace swsmm
 								dest_dimensions.width,
 								dest_dimensions.height,
 								dest_pixel_format,
-								flags,
+								flags, //todo: set them to improve perfs if needed
 								nullptr,
 								nullptr,
 								nullptr)}
@@ -40,6 +40,6 @@ namespace swsmm
 							 uint8_t *const *dst,
 							 const int *dstStride)
 	{
-
+		sws_scale(_context, srcSlice, srcStride, srcSliceY, srcSliceH, dst, dstStride);
 	}
 }

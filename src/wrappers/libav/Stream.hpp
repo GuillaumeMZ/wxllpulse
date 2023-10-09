@@ -1,5 +1,7 @@
 #pragma once
 
+#include <cstdint>
+
 extern "C" {
 	#include <libavformat/avformat.h>
 }
@@ -16,6 +18,7 @@ namespace avmm
 			Stream(); //should become private
 
 			CodecParameters get_codec_parameters() const;
+			std::int64_t get_frames_count() const;
 
 		private:
 			explicit Stream(AVStream *source);

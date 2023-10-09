@@ -17,13 +17,13 @@ namespace wxp
 			void setBackground(const Image& image);
 
 		private:
-			void prepareImage(XImage *x11_image, void* pixels_blob);
+			void prepareImage(XImage* x11_image, void* pixels_blob);
 			void updateWindowProperties();
 
 		private:
-			Display *_display;
+			Display* _display;
 			Window _window;
-			Screen *_screen;
+			Screen* _screen;
 			Pixmap _pixmap;
 	};
 }

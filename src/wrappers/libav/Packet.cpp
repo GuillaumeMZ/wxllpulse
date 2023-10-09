@@ -13,7 +13,6 @@ avmm::Packet::Packet():
 
 avmm::Packet::~Packet()
 {
-	//av_packet_unref should be called to, but when ?é
 	av_packet_free(&_packet);
 }
 

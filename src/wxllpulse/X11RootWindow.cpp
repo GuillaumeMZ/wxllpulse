@@ -58,6 +58,7 @@ namespace wxp
 
 	void X11RootWindow::prepareImage(XImage* x11_image, void* pixels_blob)
 	{
+		//todo: remove magic numbers
 		x11_image->width = _screen->width;
 		x11_image->height = _screen->height;
 		x11_image->xoffset = 0;

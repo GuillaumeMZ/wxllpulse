@@ -10,6 +10,7 @@ namespace wxp
 	{
 		//temporary test code using stb; I'm searching for a better image manipulation lib
 		Image result {};
+		result._should_free = true;
 		result._image = stbi_load(path.c_str(), &result._width, &result._height, nullptr, 3);
 		if(result._image == nullptr)
 		{
@@ -23,6 +24,7 @@ namespace wxp
 	{
 		//needs improvement (and a better lib)
 		Image result {};
+		result._should_free = false;
 		result._image = static_cast<unsigned char *>(data);
 		result._width = width;
 		result._height = height;
@@ -32,7 +34,10 @@ namespace wxp
 
 	Image::~Image()
 	{
-		stbi_image_free(_image);
+		if(_should_free)
+		{
+			stbi_image_free(_image);
+		}
 	}
 
 	void* Image::get_pixels() const

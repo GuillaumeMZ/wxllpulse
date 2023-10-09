@@ -22,4 +22,9 @@ namespace avmm
 	{
 		return CodecParameters{_stream->codecpar};
 	}
+
+	std::int64_t Stream::get_frames_count() const
+	{
+		return _stream->nb_frames;
+	}
 }

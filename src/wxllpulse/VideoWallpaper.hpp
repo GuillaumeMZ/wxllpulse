@@ -8,6 +8,7 @@
 #include "wrappers/libav/FormatContext.hpp"
 #include "wrappers/libav/Frame.hpp"
 #include "wrappers/libav/Packet.hpp"
+#include "wrappers/libav/Stream.hpp"
 
 #include "Wallpaper.hpp"
 
@@ -21,11 +22,11 @@ namespace wxp
 			VideoWallpaper(VideoWallpaper&&) = delete;
 			VideoWallpaper& operator=(const VideoWallpaper&) = delete;
 			VideoWallpaper& operator=(VideoWallpaper&&) = delete;
-			~VideoWallpaper();
+			~VideoWallpaper() = default;
 
 			void setAsCurrent(X11RootWindow& root_window/* ScalingMode scaling_mode */) override;
 
 		private:
-
+			avmm::FormatContext _formatContext;
 	};
 }

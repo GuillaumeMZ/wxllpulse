@@ -17,8 +17,8 @@ namespace avmm
 
 			int get_width() const;
 			int get_height() const;
+			int get_format() const;
 
-		private:
 			AVFrame *_frame;
 	};
 }
