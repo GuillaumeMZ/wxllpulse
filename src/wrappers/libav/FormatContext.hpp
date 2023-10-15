@@ -1,10 +1,11 @@
 #pragma once
 
+#include <filesystem>
 #include <optional>
-#include <string>
 #include <vector>
 
-extern "C" {
+extern "C"
+{
     #include <libavformat/avformat.h>
     #include <libavcodec/avcodec.h>
 }
@@ -17,21 +18,15 @@ namespace avmm
     class FormatContext
     {
         public:
+			explicit FormatContext(const std::filesystem::path& path);
 			FormatContext(const FormatContext&) = delete;
-			FormatContext(FormatContext&&) noexcept;
+			FormatContext(FormatContext&&) = delete;
+			FormatContext& operator=(const FormatContext&) = delete;
+			FormatContext& operator=(FormatContext&&) = delete;
             ~FormatContext();
 
-			FormatContext& operator=(const FormatContext&) = delete;
-			FormatContext& operator=(FormatContext&&) noexcept;
-
-            static FormatContext from_file(const std::string& path);
-
             const std::vector<Stream>& get_streams();
-
 			void read_frame(Packet& frame);
-
-        private:
-            FormatContext();
 
         private:
             AVFormatContext *_context;

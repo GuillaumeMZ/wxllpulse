@@ -4,11 +4,6 @@
 
 namespace avmm
 {
-	Stream::Stream():
-		_stream{nullptr}
-	{
-	}
-
 	Stream::Stream(AVStream *source):
 		_stream{source}
 	{

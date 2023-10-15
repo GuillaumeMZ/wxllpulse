@@ -1,20 +1,20 @@
 #pragma once
 
 #include <X11/Xlib.h>
-#include "Image.hpp"
+#include "Rgb24Pixmap.hpp"
 
 namespace wxp
 {
 	/**
 	 * Represents the root Window of a specific screen.
 	 */
-	class X11RootWindow
+	class RootWindow
 	{
 		public:
-			explicit X11RootWindow(int screen_number);
-			~X11RootWindow();
+			explicit RootWindow(int screen_number);
+			~RootWindow();
 
-			void setBackground(const Image& image);
+			void setBackground(const RGB24Pixmap& rgb_24_pixmap);
 
 		private:
 			void prepareImage(XImage* x11_image, void* pixels_blob);

@@ -1,24 +1,39 @@
-#include <stdexcept>
-
-#include "wrappers/libswscale/ScaleContext.hpp"
-
+#include <libavutil/imgutils.h>
 #include "VideoWallpaper.hpp"
-
-extern "C"
-{
-	#include <libavutil/imgutils.h>
-}
+#include "wxllpulse/image/Image.hpp"
+#include "wrappers/libswscale/ScaleContext.hpp"
+#include "wrappers/libav/CodecParameters.hpp"
+#include "wrappers/libav/Codec.hpp"
+#include "wrappers/libav/CodecContext.hpp"
+#include "wrappers/libav/FormatContext.hpp"
 
 namespace wxp
 {
-	VideoWallpaper::VideoWallpaper(const std::string& video_path):
-		_formatContext { avmm::FormatContext::from_file(video_path) }
+	VideoWallpaper::VideoWallpaper(const std::filesystem::path& video_path):
+		_decoder { video_path },
+		_path { video_path.string() }
 	{
 	}
 
-	void VideoWallpaper::setAsCurrent(X11RootWindow &root_window/* ScalingMode scaling_mode */)
+	void VideoWallpaper::setAsCurrent(RootWindow &root_window/* ScalingMode scaling_mode */)
 	{
+		/*
+			while(true)
+		 	{
+		 		auto frame = _decoder.decode_next_video_frame();
+		 		if(frame is the last frame of the stream)
+		 		{
+		 			_decoder.rewind();
+				}
+
+				root_window.setBackground(frame);
+				sleep
+			}
+		 */
+
 		using namespace avmm;
+
+		FormatContext _formatContext {_path};
 
 		for (const auto &stream: _formatContext.get_streams())
 		{
@@ -29,8 +44,8 @@ namespace wxp
 				continue;
 			}
 
-			const Codec codec = Codec::from_codec_id(codecParameters.get_codec_id());
-			CodecContext codecContext = CodecContext::from_codec(codec, codecParameters);
+			const Codec codec { codecParameters.get_codec_id() };
+			CodecContext codecContext { codec, codecParameters };
 
 			Packet packet;
 			Frame frame;
@@ -61,6 +76,7 @@ namespace wxp
 			root_window.setBackground(result);
 
 			break; //TODO: support multi-stream videos
+
 		}
 	}
 }

@@ -2,7 +2,8 @@
 
 #include <cstdint>
 
-extern "C" {
+extern "C"
+{
 	#include <libavformat/avformat.h>
 }
 
@@ -15,10 +16,10 @@ namespace avmm
 		friend class FormatContext;
 
         public:
-			Stream(); //should become private
+			Stream() = delete;
 
-			CodecParameters get_codec_parameters() const;
-			std::int64_t get_frames_count() const;
+			[[nodiscard]] CodecParameters get_codec_parameters() const;
+			[[nodiscard]] std::int64_t get_frames_count() const;
 
 		private:
 			explicit Stream(AVStream *source);

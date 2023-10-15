@@ -9,7 +9,7 @@ namespace wxp
 	{
 	}
 
-	void ImageWallpaper::setAsCurrent(X11RootWindow& root_window)
+	void ImageWallpaper::setAsCurrent(RootWindow& root_window)
 	{
 		root_window.setBackground(_image);
 	}

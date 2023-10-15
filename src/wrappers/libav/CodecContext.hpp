@@ -14,7 +14,7 @@ namespace avmm
 	class CodecContext
 	{
 		public:
-			static CodecContext from_codec(const Codec& codec, const CodecParameters& codec_parameters);
+			CodecContext(const Codec& codec, const CodecParameters& codec_parameters);
 			~CodecContext();
 
 			void send_packet(Packet& packet);
