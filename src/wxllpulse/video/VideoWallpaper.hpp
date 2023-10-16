@@ -18,7 +18,7 @@ namespace wxp
 			VideoWallpaper& operator=(VideoWallpaper&&) = delete;
 			~VideoWallpaper() = default;
 
-			void setAsCurrent(RootWindow& root_window/* ScalingMode scaling_mode */) override;
+			void setAsCurrent(X11RootWindow& root_window/* ScalingMode scaling_mode */) override;
 
 		private:
 			VideoDecoder _decoder;

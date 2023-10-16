@@ -8,11 +8,11 @@ namespace wxp
 		//simplify this with ranges ?
 		for(auto stream: _formatContext.get_streams())
 		{
-			auto codec_type = stream.get_codec_parameters().get_codec_type();
-			if(codec_type == AVMEDIA_TYPE_VIDEO)
+			auto codecType = stream.get_codec_parameters().get_codec_type();
+			if(codecType == AVMEDIA_TYPE_VIDEO)
 			{
 				_videoStream = stream;
-				_codec = avmm::Codec {static_cast<AVCodecID>(codec_type)};
+				_codec = avmm::Codec {static_cast<AVCodecID>(codecType)};
 				_codecContext = avmm::CodecContext {_codec, stream.get_codec_parameters()};
 				break;
 			}

@@ -8,11 +8,11 @@ namespace wxp
 	/**
 	 * Represents the root Window of a specific screen.
 	 */
-	class RootWindow
+	class X11RootWindow
 	{
 		public:
-			explicit RootWindow(int screen_number);
-			~RootWindow();
+			explicit X11RootWindow(int screen_number);
+			~X11RootWindow();
 
 			void setBackground(const RGB24Pixmap& rgb_24_pixmap);
 

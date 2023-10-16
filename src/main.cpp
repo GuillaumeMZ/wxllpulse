@@ -1,10 +1,10 @@
-#include "wxllpulse/RootWindow.hpp"
+#include "wxllpulse/X11RootWindow.hpp"
 #include "wxllpulse/image/ImageWallpaper.hpp"
 #include "wxllpulse/video/VideoWallpaper.hpp"
 
 int main()
 {
-	/*wxp::RootWindow root{0};
+	/*wxp::X11RootWindow root{0};
 	wxp::Image image = wxp::Image::from_file("/home/guillaume/output.png");
 	wxp::ImageWallpaper wallpaper{image};
 	wxp::VideoWallpaper wallpaper { "/home/guillaume/salter.mp4" };

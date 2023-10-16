@@ -2,11 +2,11 @@
 #include <X11/Xlib.h>
 #include <stdexcept>
 
-#include "RootWindow.hpp"
+#include "X11RootWindow.hpp"
 
 namespace wxp
 {
-	RootWindow::RootWindow(int screen_number)
+	X11RootWindow::X11RootWindow(int screen_number)
 	{
 		_display = XOpenDisplay(nullptr);
 		if (_display == nullptr)
@@ -21,13 +21,13 @@ namespace wxp
 		_pixmap = XCreatePixmap(_display, _window, _screen->width, _screen->height, _screen->root_depth); //reusable ?
 	}
 
-	RootWindow::~RootWindow()
+	X11RootWindow::~X11RootWindow()
 	{
 		//DO NOT CALL XFreePixmap ! If the pixmap is destroyed, other applications won't be able to fetch it
 		XCloseDisplay(_display);
 	}
 
-	void RootWindow::setBackground(const Image& image /* Pixmap pixmap */)
+	void X11RootWindow::setBackground(const Image& image /* Pixmap pixmap */)
 	{
 		//TODO: check if it succeeded
 		//move the pixmap creation to another class
@@ -42,7 +42,7 @@ namespace wxp
 		XFlush(_display);
 	}
 
-	void RootWindow::updateWindowProperties()
+	void X11RootWindow::updateWindowProperties()
 	{
 		//Is it really necessary to do that after the first setAsCurrent since it will be the same pixmap ? alloc'd in the ctor
 		//TODO: check the results of these calls
@@ -57,7 +57,7 @@ namespace wxp
 		XChangeProperty(_display, _window, esetroot_pmap_id, XA_PIXMAP, 32, PropModeReplace, reinterpret_cast<unsigned char*>(&_pixmap), 1);
 	}
 
-	void RootWindow::prepareImage(XImage* x11_image, void* pixels_blob)
+	void X11RootWindow::prepareImage(XImage* x11_image, void* pixels_blob)
 	{
 		//todo: remove magic numbers
 		x11_image->width = _screen->width;

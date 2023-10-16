@@ -10,12 +10,11 @@
 namespace wxp
 {
 	VideoWallpaper::VideoWallpaper(const std::filesystem::path& video_path):
-		_decoder { video_path },
-		_path { video_path.string() }
+		_decoder { video_path }
 	{
 	}
 
-	void VideoWallpaper::setAsCurrent(RootWindow &root_window/* ScalingMode scaling_mode */)
+	void VideoWallpaper::setAsCurrent(X11RootWindow& root_window/* ScalingMode scaling_mode */)
 	{
 		/*
 			while(true)
@@ -30,7 +29,7 @@ namespace wxp
 				sleep
 			}
 		 */
-
+		/*
 		using namespace avmm;
 
 		FormatContext _formatContext {_path};
@@ -76,7 +75,7 @@ namespace wxp
 			root_window.setBackground(result);
 
 			break; //TODO: support multi-stream videos
-
+			*/
 		}
 	}
 }
