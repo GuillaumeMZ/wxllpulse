@@ -14,11 +14,10 @@ namespace wxp
 			explicit X11RootWindow(int screen_number);
 			~X11RootWindow();
 
-			void setBackground(const RGB24Pixmap& rgb_24_pixmap);
+			void set_background(const Rgb24Pixmap& rgb_24_pixmap);
 
 		private:
-			void prepareImage(XImage* x11_image, void* pixels_blob);
-			void updateWindowProperties();
+			void update_window_properties();
 
 		private:
 			Display* _display;

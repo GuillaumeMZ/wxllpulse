@@ -2,10 +2,10 @@
 
 #include <filesystem>
 
-#include "wrappers/libav/Codec.hpp"
-#include "wrappers/libav/CodecContext.hpp"
-#include "wrappers/libav/FormatContext.hpp"
-#include "wrappers/libav/Stream.hpp"
+#include "wxllpulse/wrappers/libav/Codec.hpp"
+#include "wxllpulse/wrappers/libav/CodecContext.hpp"
+#include "wxllpulse/wrappers/libav/FormatContext.hpp"
+#include "wxllpulse/wrappers/libav/Stream.hpp"
 #include "RgbFrame.hpp"
 
 namespace wxp
@@ -28,8 +28,8 @@ namespace wxp
 
 		private:
 			avmm::FormatContext _formatContext;
-			avmm::Stream _videoStream;
-			avmm::Codec _codec;
 			avmm::CodecContext _codecContext;
+			avmm::Packet _packet;
+			avmm::Frame _frame;
 	};
 }

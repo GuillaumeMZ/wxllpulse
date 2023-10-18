@@ -2,8 +2,8 @@
 
 #include <filesystem>
 
-#include "wxllpulse/Wallpaper.hpp"
-#include "wxllpulse/video/VideoDecoder.hpp"
+#include "wxllpulse/wallpapers/Wallpaper.hpp"
+#include "VideoDecoder.hpp"
 
 namespace wxp
 {
@@ -18,7 +18,7 @@ namespace wxp
 			VideoWallpaper& operator=(VideoWallpaper&&) = delete;
 			~VideoWallpaper() = default;
 
-			void setAsCurrent(X11RootWindow& root_window/* ScalingMode scaling_mode */) override;
+			void set_as_current(X11RootWindow& root_window/* ScalingMode scaling_mode */) override;
 
 		private:
 			VideoDecoder _decoder;

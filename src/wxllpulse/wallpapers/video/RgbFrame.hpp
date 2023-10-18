@@ -2,7 +2,7 @@
 
 namespace wxp
 {
-	class RGB24Pixmap
+	class RgbFrame
 	{
 
 	};

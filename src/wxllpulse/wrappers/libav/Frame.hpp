@@ -1,6 +1,7 @@
 #pragma once
 
-extern "C" {
+extern "C"
+{
 	#include <libavcodec/avcodec.h>
 	#include <libavutil/avutil.h>
 }
@@ -15,10 +16,10 @@ namespace avmm
 			Frame();
 			~Frame();
 
-			int get_width() const;
-			int get_height() const;
-			int get_format() const;
+			[[nodiscard]] int get_width() const;
+			[[nodiscard]] int get_height() const;
 
+		private:
 			AVFrame *_frame;
 	};
 }

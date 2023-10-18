@@ -14,6 +14,7 @@ namespace avmm
 	class CodecContext
 	{
 		public:
+			CodecContext() = default;
 			CodecContext(const Codec& codec, const CodecParameters& codec_parameters);
 			~CodecContext();
 

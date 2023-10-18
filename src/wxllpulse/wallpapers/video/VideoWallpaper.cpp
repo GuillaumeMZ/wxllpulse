@@ -14,7 +14,7 @@ namespace wxp
 	{
 	}
 
-	void VideoWallpaper::setAsCurrent(X11RootWindow& root_window/* ScalingMode scaling_mode */)
+	void VideoWallpaper::set_as_current(X11RootWindow& root_window/* ScalingMode scaling_mode */)
 	{
 		/*
 			while(true)
@@ -25,35 +25,11 @@ namespace wxp
 		 			_decoder.rewind();
 				}
 
-				root_window.setBackground(frame);
+				root_window.set_background(frame);
 				sleep
 			}
 		 */
 		/*
-		using namespace avmm;
-
-		FormatContext _formatContext {_path};
-
-		for (const auto &stream: _formatContext.get_streams())
-		{
-			CodecParameters codecParameters = stream.get_codec_parameters();
-
-			if (codecParameters.get_codec_type() != AVMEDIA_TYPE_VIDEO)
-			{
-				continue;
-			}
-
-			const Codec codec { codecParameters.get_codec_id() };
-			CodecContext codecContext { codec, codecParameters };
-
-			Packet packet;
-			Frame frame;
-
-			//decode packet
-			_formatContext.read_frame(packet);
-			codecContext.send_packet(packet);
-			codecContext.receive_frame(frame);
-
 			//convert image to rgb
 			swsmm::ScaleContext scaleContext ({frame.get_width(), frame.get_height()},
 											  static_cast<AVPixelFormat>(frame._frame->format),
@@ -72,10 +48,10 @@ namespace wxp
 			Image result = Image::from_memory(resultf->data[0], 1920, 1080);
 
 			//display it
-			root_window.setBackground(result);
+			root_window.set_background(result);
 
 			break; //TODO: support multi-stream videos
-			*/
-		}
+		
+		}*/
 	}
 }

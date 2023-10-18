@@ -3,7 +3,7 @@ add_requires("cxxopts", "stb")
 target("wxllpulse")
     set_default(true)
     set_kind("binary")
-    set_languages("cxx17")
+    set_languages("cxx20")
 
     add_includedirs("src")
     add_files("src/**.cpp")
