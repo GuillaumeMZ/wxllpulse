@@ -1,11 +1,4 @@
-#include <libavutil/imgutils.h>
 #include "VideoWallpaper.hpp"
-#include "wxllpulse/image/Image.hpp"
-#include "wrappers/libswscale/ScaleContext.hpp"
-#include "wrappers/libav/CodecParameters.hpp"
-#include "wrappers/libav/Codec.hpp"
-#include "wrappers/libav/CodecContext.hpp"
-#include "wrappers/libav/FormatContext.hpp"
 
 namespace wxp
 {
