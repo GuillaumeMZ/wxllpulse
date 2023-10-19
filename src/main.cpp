@@ -1,6 +1,6 @@
 #include "wxllpulse/x11/X11RootWindow.hpp"
-#include "wxllpulse/image/ImageWallpaper.hpp"
-#include "wxllpulse/video/VideoWallpaper.hpp"
+#include "wxllpulse/wallpapers/image/ImageWallpaper.hpp"
+#include "wxllpulse/wallpapers/video/VideoWallpaper.hpp"
 
 int main()
 {
