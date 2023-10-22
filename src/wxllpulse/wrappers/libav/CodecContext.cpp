@@ -25,6 +25,14 @@ namespace avmm
 		}
 	}
 
+	CodecContext& CodecContext::operator=(CodecContext&& rhs) noexcept
+	{
+		_context = rhs._context;
+		rhs._context = nullptr;
+
+		return *this;
+	}
+
 	CodecContext::~CodecContext()
 	{
 		//according to the documentation, avcodec_close shouldn't be used
@@ -48,4 +56,5 @@ namespace avmm
 			throw std::runtime_error("CodecContext::receive_frame(Frame&): receiving failed.");
 		}
 	}
+
 }

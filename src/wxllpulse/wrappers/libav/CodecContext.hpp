@@ -19,7 +19,7 @@ namespace avmm
 			CodecContext(const CodecContext&) = delete;
 			CodecContext(CodecContext&&) = delete;
 			CodecContext& operator=(const CodecContext&) = delete;
-			CodecContext& operator=(CodecContext&&) = delete;
+			CodecContext& operator=(CodecContext&&) noexcept;
 			~CodecContext();
 
 			void send_packet(Packet& packet);
