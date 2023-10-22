@@ -21,7 +21,7 @@ namespace swsmm
 						 AVPixelFormat source_pixel_format,
 						 ImageDimensions dest_dimensions,
 						 AVPixelFormat dest_format,
-						 int flags);
+						 int flags = 0);
 			~ScaleContext();
 
 			void scale(const uint8_t *const srcSlice[],

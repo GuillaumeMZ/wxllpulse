@@ -16,6 +16,10 @@ namespace avmm
 		public:
 			CodecContext() = default; //TODO: remove
 			CodecContext(const Codec& codec, const CodecParameters& codec_parameters);
+			CodecContext(const CodecContext&) = delete;
+			CodecContext(CodecContext&&) = delete;
+			CodecContext& operator=(const CodecContext&) = delete;
+			CodecContext& operator=(CodecContext&&) = delete;
 			~CodecContext();
 
 			void send_packet(Packet& packet);
