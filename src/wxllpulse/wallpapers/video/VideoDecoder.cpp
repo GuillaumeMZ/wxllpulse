@@ -14,7 +14,7 @@ namespace wxp
 			if(codecType == AVMEDIA_TYPE_VIDEO)
 			{
 				_codec = avmm::Codec {stream.get_codec_parameters().get_codec_id()};
-				_codecContext = avmm::CodecContext {_codec, stream.get_codec_parameters()}; //error: temporary context is freed; codeccontext is closed
+				_codecContext = avmm::CodecContext {_codec, stream.get_codec_parameters()};
 
 				return;
 			}
