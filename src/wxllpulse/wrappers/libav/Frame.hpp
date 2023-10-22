@@ -6,6 +6,8 @@ extern "C"
 	#include <libavutil/avutil.h>
 }
 
+#include <cstdint>
+
 namespace avmm
 {
 	class Frame
@@ -14,12 +16,15 @@ namespace avmm
 
 		public:
 			Frame();
+			Frame(int desired_width, int desired_height /* AVPixelFormat format */);
 			~Frame();
 
 			[[nodiscard]] int get_width() const;
 			[[nodiscard]] int get_height() const;
+			[[nodiscard]] std::int64_t get_dts() const;
+
 
 		private:
-			AVFrame *_frame;
+			AVFrame* _frame;
 	};
 }

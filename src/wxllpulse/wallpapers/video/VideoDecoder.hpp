@@ -23,11 +23,12 @@ namespace wxp
 			VideoDecoder& operator=(VideoDecoder&&) = delete;
 			~VideoDecoder() = default;
 
-			RgbFrame decode_next_video_frame();
+			avmm::Frame& decode_next_video_frame();
 			//decode_next_audio_frame
 
 		private:
 			avmm::FormatContext _formatContext;
+			avmm::Codec _codec;
 			avmm::CodecContext _codecContext;
 			avmm::Packet _packet;
 			avmm::Frame _frame;

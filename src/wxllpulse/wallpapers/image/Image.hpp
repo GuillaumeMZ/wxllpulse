@@ -15,7 +15,7 @@ namespace wxp
 
 			[[nodiscard]] int get_width() const override;
 			[[nodiscard]] int get_height() const override;
-			[[nodiscard]] const void *get_pixels() const override;
+			[[nodiscard]] const void* get_pixels() const override;
 
 		private:
 			int _width;

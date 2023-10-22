@@ -29,7 +29,7 @@ namespace wxp
 
 	void X11RootWindow::set_background(const Rgb24Pixmap& rgb_24_pixmap)
 	{
-		XPutImage(_display, _pixmap, _screen->default_gc, &x11_image, 0, 0, 0, 0, _screen->width, _screen->height);
+		//XPutImage(_display, _pixmap, _screen->default_gc, &x11_image, 0, 0, 0, 0, _screen->width, _screen->height);
 		update_window_properties();
 
 		XSetWindowBackgroundPixmap(_display, _window, _pixmap);

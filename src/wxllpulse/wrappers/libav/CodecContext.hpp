@@ -14,7 +14,7 @@ namespace avmm
 	class CodecContext
 	{
 		public:
-			CodecContext() = default;
+			CodecContext() = default; //TODO: remove
 			CodecContext(const Codec& codec, const CodecParameters& codec_parameters);
 			~CodecContext();
 
@@ -22,6 +22,6 @@ namespace avmm
 			void receive_frame(Frame& frame);
 
 		private:
-			AVCodecContext *_context;
+			AVCodecContext* _context;
 	};
 }

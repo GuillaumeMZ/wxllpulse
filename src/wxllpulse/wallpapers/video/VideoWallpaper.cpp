@@ -2,12 +2,14 @@
 
 namespace wxp
 {
-	VideoWallpaper::VideoWallpaper(const std::filesystem::path& video_path):
-		_decoder { video_path }
+	VideoWallpaper::VideoWallpaper(WallpaperSettings wallpaper_settings):
+		_wallpaperSettings { std::move(wallpaper_settings) },
+		_decoder { _wallpaperSettings.resourcePath },
+		_scaledFrame { _wallpaperSettings.screenWidth, _wallpaperSettings.screenHeight }
 	{
 	}
 
-	void VideoWallpaper::set_as_current(X11RootWindow& root_window/* ScalingMode scaling_mode */)
+	void VideoWallpaper::set_as_current(X11RootWindow& root_window)
 	{
 		/*
 			while(true)
@@ -18,8 +20,9 @@ namespace wxp
 		 			_decoder.rewind();
 				}
 
+		 		scale frame
 				root_window.set_background(frame);
-				sleep
+				sleep(frame_delay);
 			}
 		 */
 		/*
@@ -30,11 +33,7 @@ namespace wxp
 											  AV_PIX_FMT_RGB24,
 											  SWS_FAST_BILINEAR);
 
-			AVFrame* resultf = av_frame_alloc();
-			av_image_alloc(resultf->data, resultf->linesize, 1920, 1080, AV_PIX_FMT_RGB24, 1);
-			resultf->width = 1920;
-			resultf->height = 1080;
-			resultf->format = AV_PIX_FMT_RGB24;
+			AVFrame* resultf
 
 			scaleContext.scale(frame._frame->data, frame._frame->linesize, 0, frame.get_height(), resultf->data, resultf->linesize);
 

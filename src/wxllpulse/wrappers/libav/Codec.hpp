@@ -14,6 +14,7 @@ namespace avmm
 		friend class CodecContext;
 
 		public:
+			Codec() = default;
 			explicit Codec(AVCodecID codec_id);
 
 		private:

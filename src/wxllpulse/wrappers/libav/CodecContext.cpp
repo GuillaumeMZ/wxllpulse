@@ -4,7 +4,7 @@
 
 namespace avmm
 {
-	CodecContext::CodecContext(const Codec &codec, const CodecParameters& codec_parameters)
+	CodecContext::CodecContext(const Codec& codec, const CodecParameters& codec_parameters)
 	{
 		_context = avcodec_alloc_context3(codec._codec);
 		if(_context == nullptr)
@@ -12,14 +12,14 @@ namespace avmm
 			throw std::runtime_error("CodecContext::from_codec(): context allocation failed.");
 		}
 
-		int parameters_loading_result = avcodec_parameters_to_context(_context, codec_parameters._parameters);
-		if(parameters_loading_result < 0)
+		int parametersLoadingResult = avcodec_parameters_to_context(_context, codec_parameters._parameters);
+		if(parametersLoadingResult < 0)
 		{
 			throw std::runtime_error("CodecContext::from_codec(): avcodec_parameters_to_context() failed.");
 		}
 
-		int codec_opening_result = avcodec_open2(_context, codec._codec, nullptr);
-		if(codec_opening_result != 0)
+		int codecOpeningResult = avcodec_open2(_context, codec._codec, nullptr);
+		if(codecOpeningResult != 0)
 		{
 			throw std::runtime_error("CodecContext::from_codec(): avcodec_open2() failed.");
 		}

@@ -32,7 +32,7 @@ namespace wxp
 		return _height;
 	}
 
-	const void *Image::get_pixels() const
+	const void* Image::get_pixels() const
 	{
 		return (const void*) _image;
 	}

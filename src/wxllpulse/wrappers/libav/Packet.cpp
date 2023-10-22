@@ -3,7 +3,7 @@
 #include <stdexcept>
 
 avmm::Packet::Packet():
-	_packet{av_packet_alloc()}
+	_packet{ av_packet_alloc() }
 {
 	if(_packet == nullptr)
 	{

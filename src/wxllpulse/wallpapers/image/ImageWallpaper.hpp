@@ -3,6 +3,7 @@
 #include <string>
 
 #include "wxllpulse/wallpapers/Wallpaper.hpp"
+#include "wxllpulse/wallpapers/WallpaperSettings.hpp"
 #include "Image.hpp"
 
 namespace wxp
@@ -10,12 +11,12 @@ namespace wxp
 	class ImageWallpaper: public Wallpaper
 	{
 		public:
-			// should we replace this by something like "ImageWallpaperSettings" ?
-			explicit ImageWallpaper(const Image& image);
+			explicit ImageWallpaper(WallpaperSettings wallpaper_settings);
 
-			void set_as_current(X11RootWindow& root_window /* ScalingMode scaling_mode */) override;
+			void set_as_current(X11RootWindow& root_window) override;
 
 		private:
-			const Image& _image;
+			WallpaperSettings _wallpaperSettings;
+			Image _image;
 	};
 }
