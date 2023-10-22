@@ -21,8 +21,9 @@ namespace avmm
 
 			[[nodiscard]] int get_width() const;
 			[[nodiscard]] int get_height() const;
-			[[nodiscard]] std::int64_t get_dts() const;
 
+			[[nodiscard]] std::int64_t get_dts() const;
+			[[nodiscard]] std::int64_t get_pts() const;
 
 		private:
 			AVFrame* _frame;

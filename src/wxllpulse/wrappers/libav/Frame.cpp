@@ -50,4 +50,9 @@ namespace avmm
 	{
 		return _frame->pkt_dts;
 	}
+
+	std::int64_t Frame::get_pts() const
+	{
+		return _frame->pts;
+	}
 }
